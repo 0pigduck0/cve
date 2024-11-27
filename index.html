@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>즉사필생</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif; /* 깔끔하고 동글동글한 글씨체 */
+            background-color: #1e1e2f;
+            color: #d1d5db;
+            overflow: hidden;
+        }
+
+        /* 상단 네비게이션 바 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            background-color: #252540;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            box-sizing: border-box;
+            flex-wrap: nowrap;
+        }
+
+        .navbar .logo {
+            font-size: 22px;
+            font-weight: 600; /* 두껍게 */
+            color: #ffa7c4;
+            white-space: nowrap;
+        }
+
+        .navbar .links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .links a {
+            text-decoration: none;
+            color: #d1d5db;
+            font-size: 16px;
+            font-weight: 600; /* 두껍게 */
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .navbar .links a:hover {
+            color: #ffa7c4;
+        }
+
+        /* 컨테이너 */
+        .container {
+            height: 100vh;
+            scroll-snap-type: y mandatory; /* 한 페이지씩 스크롤 */
+            overflow-y: scroll;
+            scroll-behavior: smooth; /* 부드러운 스크롤 */
+        }
+
+        /* 각 섹션 */
+        .section {
+            width: 100%;
+            height: 100vh;
+            scroll-snap-align: start; /* 섹션 고정 위치 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            opacity: 0; /* 기본적으로 숨김 */
+            transform: translateY(50px); /* 아래에서 올라오는 느낌 */
+            transition: all 0.8s ease; /* 애니메이션 효과 */
+        }
+
+        .section.active {
+            opacity: 1; /* 보이게 설정 */
+            transform: translateY(0); /* 원래 위치로 이동 */
+        }
+
+        .section.one { background-color: #252540; }
+        .section.two { background-color: #1e1e2f; }
+        .section.three { background-color: #252540; }
+
+        /* 텍스트 스타일 */
+        .text {
+            max-width: 800px;
+            padding: 20px;
+            background-color: #333;
+            color: #d1d5db;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 18px;
+            font-weight: 400; /* 기본 두께 */
+        }
+
+        .text code {
+            background-color: #444;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #ffa7c4;
+        }
+
+        /* 버튼 스타일 */
+        .cta-button {
+            background-color: #ffa7c4;
+            color: #1e1e2f;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600; /* 두껍게 */
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .cta-button:hover {
+            background-color: #ff6f91;
+            color: #fff;
+        }
+
+        /* 우측 네비게이션 바 */
+        .side-navbar {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .side-navbar a {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #252540;
+            border: 1px solid #ffa7c4;
+            border-radius: 50%;
+            color: #ffa7c4;
+            font-size: 24px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .side-navbar a:hover {
+            background-color: #ffa7c4;
+            color: #1e1e2f;
+        }
+
+        /* 기본 스크롤바 숨김 */
+        ::-webkit-scrollbar {
+            display: none; /* Chrome, Safari */
+        }
+        body {
+            -ms-overflow-style: none; /* IE, Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        /* 반응형 스타일 */
+        @media (max-width: 768px) {
+            .text {
+                max-width: 90%;
+            }
+
+            .side-navbar {
+                right: 10px;
+            }
+
+            .side-navbar a {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 상단 네비게이션 바 -->
+    <div class="navbar">
+        <div class="logo">필사즉생</div>
+        <div class="links">
+            <a href="index.html">홈</a>
+            <a href="cve_scan.html">스캔</a>
+            <a href="#">즉사필생</a>
+        </div>
+    </div>
+
+    <div class="container" id="container">
+        <!-- 첫 번째 섹션 -->
+        <div id="section1" class="section one">
+            <div class="text">
+                <h1>빠르고 효율적인 취약점 분석</h1>
+                <p>
+                    <code>const cveAnalysis = new Tool()</code><br>
+                    CVE(공개적으로 알려진 취약점) 분석 도구는 <br>빠르고 효율적인 취약점 분석 환경을 제공합니다.
+                </p>
+            </div>
+        </div>
+        <!-- 두 번째 섹션 -->
+        <div id="section2" class="section two">
+            <div class="text">
+                <h1>체계적인 결과 보고</h1>
+                <p>
+                    분석 결과는 <code>report.generate('PDF')</code> 명령으로 <br>
+                    사용자에게 체계적인 데이터를 제공합니다.
+                </p>
+            </div>
+        </div>
+        <!-- 세 번째 섹션 -->
+        <div id="section3" class="section three">
+            <div class="text">
+                <h1>지금 시작하세요!</h1>
+                <p>
+                    <code>startScan()</code> 버튼을 눌러<br>취약점 스캔을 시작하세요!
+                </p>
+                <button class="cta-button" onclick="location.href='cve_scan.html'">스캔하기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 우측 네비게이션 바 -->
+    <div class="side-navbar">
+        <a href="#section1">🔍</a>
+        <a href="#section2">📜</a>
+        <a href="#section3">🚀</a>
+    </div>
+
+    <script>
+       const container = document.getElementById('container');
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.side-navbar a');
+let currentSection = 0;
+let isScrolling = false;
+
+// 섹션 활성화 상태 관리
+function activateSection(index) {
+    sections.forEach((section, i) => {
+        section.classList.toggle('active', i === index);
+    });
+
+    // 네비게이션 링크 활성화 상태 관리
+    navLinks.forEach((link, i) => {
+        link.classList.toggle('active', i === index);
+    });
+}
+
+// 섹션으로 스크롤 이동
+function scrollToSection(index) {
+    const targetSection = sections[index];
+    if (!targetSection) return;
+
+    const targetPosition = targetSection.offsetTop;
+
+    isScrolling = true;
+
+    container.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth',
+    });
+
+    setTimeout(() => {
+        isScrolling = false;
+    }, 800); // 스크롤 시간과 일치
+}
+
+// 휠 스크롤 이벤트 처리
+container.addEventListener('wheel', (e) => {
+    if (isScrolling) return;
+
+    const delta = e.deltaY;
+
+    if (delta > 0 && currentSection < sections.length - 1) {
+        currentSection++;
+    } else if (delta < 0 && currentSection > 0) {
+        currentSection--;
+    }
+
+    scrollToSection(currentSection);
+    activateSection(currentSection);
+});
+
+// 네비게이션 클릭 이벤트 처리
+navLinks.forEach((link, index) => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (isScrolling) return;
+
+        currentSection = index;
+        scrollToSection(currentSection);
+        activateSection(currentSection);
+    });
+});
+
+// 스크롤 위치에 따라 섹션 활성화 동기화
+container.addEventListener('scroll', () => {
+    const containerScrollTop = container.scrollTop;
+
+    sections.forEach((section, index) => {
+        if (
+            containerScrollTop >= section.offsetTop - window.innerHeight / 2 &&
+            containerScrollTop < section.offsetTop + section.offsetHeight - window.innerHeight / 2
+        ) {
+            activateSection(index);
+            currentSection = index;
+        }
+    });
+});
+
+// 초기 상태 활성화
+activateSection(currentSection);
+scrollToSection(currentSection);
+
+
+    </script>
+</body>
+</html>

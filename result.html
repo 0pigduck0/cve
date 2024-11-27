@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVE 스캔 결과</title>
+    <!-- Google Fonts 추가 -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif; /* 깔끔하고 동글동글한 글씨체 */
+            background-color: #1e1e2f;
+            margin: 0;
+            padding: 0;
+            color: #d1d5db;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #252540;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #ffa7c4;
+            font-size: 28px;
+            font-weight: 600; /* 두껍게 */
+            margin-bottom: 20px;
+        }
+        .content-box {
+            background-color: #2c2c3c;
+            border: 1px solid #444;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        p {
+            font-size: 16px;
+            color: #d1d5db;
+            font-weight: 400; /* 기본 두께 */
+            margin-bottom: 15px;
+        }
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .result-card {
+            background-color: #2c2c3c;
+            border: 1px solid #444;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+        .result-card h2 {
+            font-size: 18px;
+            color: #ffa7c4;
+            font-weight: 600; /* 두껍게 */
+            margin: 10px 0;
+        }
+        .result-card p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #b0b0b0;
+            font-weight: 400; /* 기본 두께 */
+        }
+        .result-card .icon {
+            font-size: 36px;
+            color: #ff85a2;
+            margin-bottom: 10px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #ffa7c4;
+            color: #252540;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600; /* 두껍게 */
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .button:hover {
+            background-color: #d6336c;
+            transform: translateY(-2px);
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+            font-weight: 400; /* 기본 두께 */
+        }
+        footer a {
+            color: #ffa7c4;
+            text-decoration: none;
+            font-weight: 600; /* 두껍게 */
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CVE 스캔 결과</h1>
+        <div class="content-box">
+            <p><strong>CVE ID:</strong> <span style="color: #ff85a2;">CVE-2024-12345</span></p>
+        </div>
+        <div class="content-box">
+            <p><strong>열린 포트:</strong></p>
+            <div class="result-grid">
+                <div class="result-card">
+                    <div class="icon">🌐</div>
+                    <h2>포트: 80</h2>
+                    <p><strong>프로토콜:</strong> TCP</p>
+                    <p><strong>상태:</strong> Open</p>
+                    <p><em>HTTP 웹 서버가 실행 중일 가능성이 있습니다.</em></p>
+                </div>
+                <div class="result-card">
+                    <div class="icon">🔒</div>
+                    <h2>포트: 443</h2>
+                    <p><strong>프로토콜:</strong> TCP</p>
+                    <p><strong>상태:</strong> Open</p>
+                    <p><em>HTTPS를 통해 안전한 웹 서버가 실행 중일 가능성이 있습니다.</em></p>
+                </div>
+                <div class="result-card">
+                    <div class="icon">🔑</div>
+                    <h2>포트: 22</h2>
+                    <p><strong>프로토콜:</strong> TCP</p>
+                    <p><strong>상태:</strong> Closed</p>
+                    <p><em>SSH 서비스가 비활성화되었거나 방화벽으로 차단되었습니다.</em></p>
+                </div>
+                <div class="result-card">
+                    <div class="icon">⚙️</div>
+                    <h2>포트: 8080</h2>
+                    <p><strong>프로토콜:</strong> TCP</p>
+                    <p><strong>상태:</strong> Open</p>
+                    <p><em>프록시 서버 또는 비표준 HTTP 서비스가 실행 중일 가능성이 있습니다.</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <p><strong>추가 분석 결과:</strong></p>
+            <ul style="text-align: left; font-size: 16px; line-height: 1.8; color: #b0b0b0; font-weight: 400;">
+                <li>운영 중인 서비스: HTTP(80), HTTPS(443), 프록시(8080) 서비스 확인.</li>
+                <li>운영체제: Linux 기반 서버일 가능성.</li>
+                <li>비표준 포트: 포트 8080에서 HTTP 서비스가 비표준 포트에서 동작 중.</li>
+                <li>취약점 가능성: CVE-2024-12345 관련 취약점과 연관 가능.</li>
+                <li>네트워크 정책: 일부 포트(22)가 닫혀 있어 SSH 연결이 제한됨.</li>
+            </ul>
+        </div>
+        <div class="content-box" style="text-align: center;">
+            <a href="index.html" class="button">홈으로</a>
+            <a href="#" class="button">문서받기</a>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 CVE 스캔 시스템. 필사즉생. <a href="#">개인정보처리방침</a></p>
+    </footer>
+</body>
+</html>

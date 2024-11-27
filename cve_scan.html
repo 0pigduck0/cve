@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVE 입력 페이지</title>
+    <!-- Google Fonts 추가 -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif; /* 깔끔하고 동글동글한 글씨체 */
+            background-color: #1e1e2f;
+            margin: 0;
+            padding: 0;
+            color: #d1d5db;
+        }
+        /* 네비게이션 바 스타일 */
+        .navbar {
+            background-color: #252540;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            text-decoration: none;
+            color: #ffa7c4;
+            margin: 0 15px;
+            font-size: 16px;
+            font-weight: 600; /* 두껍게 */
+            transition: color 0.3s;
+        }
+        .navbar a:hover {
+            color: #ff85a2;
+        }
+        .navbar .logo {
+            font-size: 22px;
+            font-weight: 600; /* 두껍게 */
+            color: #ffa7c4;
+        }
+        .navbar .links {
+            display: flex;
+        }
+        .container {
+            max-width: 600px;
+            margin: 100px auto; /* 네비게이션 바 높이를 고려 */
+            padding: 30px;
+            background: #252540;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        header {
+            background-color: #252540;
+            color: #ffa7c4;
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
+            font-size: 20px;
+            font-weight: 600; /* 두껍게 */
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        header p {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #444;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif; /* 동일한 글씨체 */
+            background-color: #1e1e2f;
+            color: #d1d5db;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input[type="text"]:focus, select:focus {
+            border-color: #ffa7c4;
+            box-shadow: 0 0 8px rgba(255, 167, 196, 0.5);
+            outline: none;
+        }
+        button {
+            padding: 12px 25px;
+            background-color: #ffa7c4;
+            color: #1e1e2f;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif; /* 동일한 글씨체 */
+            font-weight: 600; /* 두껍게 */
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #ff6f91;
+            transform: translateY(-2px);
+        }
+        button:active {
+            background-color: #d6336c;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">필사즉생</div>
+        <div class="links">
+            <a href="index.html">홈</a>
+            <a href="cve_scan.html">스캔</a>
+            <a href="#">즉사필생</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>CVE 입력 페이지</h1>
+            <p>스캔할 CVE와 방식을 선택하세요.</p>
+        </header>
+        <form id="cveForm">
+            <input type="text" id="cveInput" placeholder="예: CVE-2024-12345" required>
+            <select id="scanMethod" required>
+                <option value="" disabled selected>스캔 방식을 선택하세요</option>
+                <option value="static">정적 분석</option>
+                <option value="dynamic">동적 분석</option>
+                <option value="hybrid">하이브리드 분석</option>
+            </select>
+            <button type="submit">스캔하기</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('cveForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const cveId = document.getElementById('cveInput').value.trim();
+            const scanMethod = document.getElementById('scanMethod').value;
+
+            if (cveId && scanMethod) {
+                // 입력된 CVE ID와 스캔 방식을 스캔 결과 페이지로 전달
+                window.location.href = `result.html?cve=${encodeURIComponent(cveId)}&method=${encodeURIComponent(scanMethod)}`;
+            } else {
+                alert('유효한 CVE ID와 스캔 방식을 선택하세요.');
+            }
+        });
+    </script>
+</body>
+</html>
